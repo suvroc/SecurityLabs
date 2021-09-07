@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<div class="text-center">
+    <h1 class="display-4">SSRS vulnerability</h1>
+
+    <h2>SSRS attack</h2>
+
+
+    <div class="mb-3">
+        <label for="input1" class="form-label">Url to load</label>
+        <input id="input1" type="text" class="form-control"
+               value="https://google.pl" />
+        <button id="run1" class="btn btn-primary">Załaduj</button>
+        <div id="result1" class="form-text"></div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $('#run1').click(() => {
+        let value = $('#input1').val();
+        $("#result1").text("In progress");
+        $.get("/api/ssrs/load?url=" + value).done( function (data) {
+            $("#result1").text(JSON.stringify(data));
+        }).fail( function (data) {
+            $("#result2").text("Error");
+        });;
+    });
+</script>
+

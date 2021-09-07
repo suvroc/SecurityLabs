@@ -23,7 +23,7 @@ namespace SecurityLabs.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult SSRS()
         {
             return View();
         }

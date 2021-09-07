@@ -2,38 +2,38 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="text-center">
-        <h1 class="display-4">ReDoS vulnerability</h1>
+<div class="text-center">
+    <h1 class="display-4">ReDoS vulnerability</h1>
 
-        <h2>ReDoS attack</h2>
+    <h2>ReDoS attack</h2>
 
         
-            <div class="mb-3">
-                <label for="input1" class="form-label">Text to validate</label>
-                <input id="input1" type="text" class="form-control"
-                       value="=t@t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.c%20" />
-                <button id="run1" class="btn btn-primary">Przelicz</button>
-                <div id="result1" class="form-text"></div>
-            </div>
+        <div class="mb-3">
+            <label for="input1" class="form-label">Text to validate</label>
+            <input id="input1" type="text" class="form-control"
+                    value="=t@t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.t.c%20" />
+            <button id="run1" class="btn btn-primary">Przelicz</button>
+            <div id="result1" class="form-text"></div>
+        </div>
 
-        <h2>ReDoS via Regex Injection</h2>
+    <h2>ReDoS via Regex Injection</h2>
         
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input id="username" type="text" class="form-control" value="^(a+)+$" />
-                <label for="password" class="form-label">Password</label>
-                <input id="password" type="text" class="form-control" value="user" />
-                <button id="run2" class="btn btn-primary">Przelicz</button>
-                <div id="result2" class="form-text"></div>
-            </div>
-            </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input id="username" type="text" class="form-control" value="^(a+)+$" />
+            <label for="password" class="form-label">Password</label>
+            <input id="password" type="text" class="form-control" value="user" />
+            <button id="run2" class="btn btn-primary">Przelicz</button>
+            <div id="result2" class="form-text"></div>
+        </div>
+</div>
 
 
 <script type="text/javascript">
     $('#run1').click(() => {
         let value = $('#input1').val();
         $("#result1").text("In progress");
-        $.get("api/redos/match?inputText=" + value).done( function (data) {
+        $.get("/api/redos/match?inputText=" + value).done( function (data) {
             $("#result1").text(JSON.stringify(data));
         }).fail( function (data) {
             $("#result2").text("Error");
@@ -44,7 +44,7 @@
         let user = $('#username').val();
         let pass = $('#password').val();
         $("#result2").text("In progress");
-        $.post("api/redos/passwordMatch", {
+        $.post("/api/redos/passwordMatch", {
             User: user,
             Password: pass
         }).done( function (data) {
